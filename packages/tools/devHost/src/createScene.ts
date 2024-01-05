@@ -24,7 +24,7 @@ export const createScene = async function () {
 
     const advancedTexture = AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    const button1 = Button.CreateSimpleButton("but1", "Click Me");
+    const button1 = Button.CreateSimpleButton("but1", "Click Us");
     button1.width = "150px";
     button1.height = "40px";
     button1.color = "white";

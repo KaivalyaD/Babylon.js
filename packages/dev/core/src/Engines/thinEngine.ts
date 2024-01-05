@@ -6136,6 +6136,8 @@ export class ThinEngine {
         return Math.min(pot, max);
     }
 
+    public static METADOME_USE_CUSTOM_FPS: boolean = false;
+    public static METADOME_CUSTOM_FPS: number = 60;
     /**
      * Queue a new function into the requested animation frame pool (ie. this function will be executed by the browser (or the javascript engine) for the next frame)
      * @param func - the function to be called
@@ -6146,6 +6148,10 @@ export class ThinEngine {
         // Note that there is kind of a typing issue here, as `setTimeout` might return something else than a number (NodeJs returns a NodeJS.Timeout object).
         // Also if the global `requestAnimationFrame`'s returnType is number, `requester.requestPostAnimationFrame` and `requester.requestAnimationFrame` types
         // are `any`.
+
+        if(ThinEngine.METADOME_USE_CUSTOM_FPS) {
+            return setTimeout(func, 1000 / ThinEngine.METADOME_CUSTOM_FPS) as unknown as number;
+        }
 
         if (!IsWindowObjectExist()) {
             if (typeof requestAnimationFrame === "function") {

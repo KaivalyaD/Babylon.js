@@ -1,5 +1,5 @@
 import type { Scene } from "@dev/core";
-import { Engine } from "@dev/core"; // can also be @lts/core
+import { Engine, ThinEngine } from "@dev/core"; // can also be @lts/core
 import { createScene as createSceneTS } from "./createScene";
 import { createScene as createSceneJS } from "./createSceneJS.js";
 
@@ -23,6 +23,9 @@ if (createSceneResult instanceof Promise) {
 }
 
 // Register a render loop to repeatedly render the scene
+ThinEngine.METADOME_USE_CUSTOM_FPS = true;
+ThinEngine.METADOME_CUSTOM_FPS = 30;
+
 engine.runRenderLoop(function () {
     scene && scene.render();
 });
